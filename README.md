@@ -1,6 +1,6 @@
-# Project 3 - *Name of App Here*
+# Project 3 - Orange Twitter
 
-**Name of your app** is a basic twitter app to read your tweets.
+**Orange Twitter** is a basic twitter app to read your tweets.
 
 Time spent: **8** hours spent in total
 
