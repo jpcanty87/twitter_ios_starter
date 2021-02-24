@@ -16,7 +16,6 @@ class HomeTableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        loadTweets()
         
         myRefreshControl.addTarget(self, action: #selector(loadTweets), for: .valueChanged)
         tableView.refreshControl = myRefreshControl
@@ -25,8 +24,10 @@ class HomeTableViewController: UITableViewController {
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem
+        
+        self.loadTweets()
     }
-    
+
     @IBAction func onLogout(_ sender: Any) {
         TwitterAPICaller.client?.logout()
         UserDefaults.standard.set(false, forKey: "userLoggedIn")
@@ -34,6 +35,7 @@ class HomeTableViewController: UITableViewController {
     }
     
     @objc func loadTweets() {
+        print("loading tweets")
         numberOfTweets = 20
         let myUrl = "https://api.twitter.com/1.1/statuses/home_timeline.json"
         let myParams = ["count":numberOfTweets]
