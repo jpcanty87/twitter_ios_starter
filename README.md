@@ -1,6 +1,6 @@
-# Project 3 - *Name of App Here*
+# Project 3 - Orange Twitter
 
-**Name of your app** is a basic twitter app to read your tweets.
+**Orange Twitter** is a basic twitter app to read your tweets.
 
 Time spent: **8** hours spent in total
 
@@ -23,5 +23,6 @@ The following **bonus** features are implemented:
 
 Here's a walkthrough of implemented user stories:
 
-<img src='http://i.imgur.com/link/to/your/gif/file.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
+![](TwitterApp.gif)
 
+GIF created with [LiceCap](http://www.cockos.com/licecap/).
