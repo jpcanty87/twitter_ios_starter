@@ -17,6 +17,8 @@ class HomeTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        loadTweets()
+        
         myRefreshControl.addTarget(self, action: #selector(loadTweets), for: .valueChanged)
         tableView.refreshControl = myRefreshControl
         // Uncomment the following line to preserve selection between presentations
@@ -24,8 +26,6 @@ class HomeTableViewController: UITableViewController {
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem
-        
-        self.loadTweets()
     }
 
     @IBAction func onLogout(_ sender: Any) {
@@ -77,16 +77,21 @@ class HomeTableViewController: UITableViewController {
     // MARK: - Table view data source
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let tweetDict = tweetsArray[indexPath.row]
         let cell = tableView.dequeueReusableCell(withIdentifier: "tweetCell", for: indexPath) as! TweetTableViewCell
-        let user = tweetsArray[indexPath.row]["user"] as! NSDictionary
+        let user = tweetDict["user"] as! NSDictionary
         let imageURL = URL(string: (user["profile_image_url_https"] as? String)!)
         let data = try? Data(contentsOf: imageURL!)
         
         cell.userNameLabel.text = user["name"] as? String
-        cell.tweetContentLabel.text = tweetsArray[indexPath.row]["text"] as? String
+        cell.tweetContentLabel.text = tweetDict["text"] as? String
         if let imageData = data {
             cell.profileImageView.image = UIImage(data: imageData)
         }
+        
+        cell.setFavorited(tweetDict["favorited"] as! Bool)
+        cell.tweetId = tweetDict["id"] as! Int
+        cell.setRetweeted(tweetDict["retweeted"] as! Bool)
         
         return cell
     }
